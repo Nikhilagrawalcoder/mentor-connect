@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "agora": "^0.0.2",
+    "agora-access-token": "^2.0.4",
+    "agora-rtc-sdk-ng": "^4.22.2",
+    "agora-token": "^2.0.3",
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.3.0",
+    "nodemailer": "^6.9.3",
+    "nodemon": "^2.0.22",
+    "peer": "^1.0.0",
+    "simple-peer": "^9.11.1",
+    "socket.io": "^4.7.0",
+    "token": "^0.1.0",
+    "uuid": "^11.0.3",
+    "zoomus": "^0.1.4"
+  }
+}

@@ -1,0 +1,176 @@
+/* Global Reset and Base Styling */
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* Header Styling */
+header {
+   width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+    background-color: #007bff;
+    color: white;
+}
+
+header .logo {
+     font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* .navbar ul li {
+    list-style: none;
+} */
+
+.navbar ul li a,
+.logoutButton{
+   display: block;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover,
+.logoutButton:hover {
+     background-color: #0056b3;
+    color: white;
+    border-radius: 25px;
+}
+
+/* Logout Button */
+
+
+/* Logout Button */
+
+
+
+
+
+/* Heading Styling */
+h1, h3 {
+    text-align: center;
+    color: #3b82f6;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 40px auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+td, th {
+    border: 1px solid #3b82f6;
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f4f8;
+}
+
+/* Appointment List Styling */
+#appointmentList {
+    margin: 30px auto;
+    width: 80%;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Buttons */
+.cancelBtn, .videoBtn {
+    border-radius: 8px;
+    background-color: #3b82f6;
+    padding: 10px 25px;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.cancelBtn:hover, .videoBtn:hover {
+    background-color: white;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .navbar ul {
+        gap: 10px;
+    }
+
+    #appointmentList {
+        width: 90%;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

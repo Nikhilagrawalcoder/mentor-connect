@@ -1,0 +1,214 @@
+/* Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa; /* Match the index.css */
+}
+
+/* Header Styling */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Align content like index.css */
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+    background-color: #007bff; /* Match index.css header */
+    color: white;
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.navBar ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navBar ul li a,
+.logoutButton{
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navBar ul li a:hover,
+.logoutButton:hover {
+    background-color: #0056b3; /* Match hover styles */
+    color: white;
+    border-radius: 25px;
+}
+
+/* Search Mentor Section */
+.searchMentor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+    text-align: center;
+    margin: 30px auto;
+    gap: 20px;
+}
+
+.searchMentor input, select {
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.searchMentor input:focus, select:focus {
+    border-color: #0056b3;
+}
+
+#searchBtn {
+    border: 1px solid #007bff;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#searchBtn:hover {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+/* Mentor Container */
+#mentorContainer {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 20px auto;
+    text-align: center;
+    gap: 30px;
+}
+
+#mentorContainer div {
+    border: 1px solid #007bff; /* Match index.css color palette */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#mentorContainer div .btn {
+    border: 1px solid #007bff;
+    padding: 10px 25px;
+    border-radius: 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mentorContainer div .btn:hover {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+/* Hero Section */
+#hero-section {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 600px;
+    background: url('./assets/bg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero-section .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#hero-section h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+#hero-section p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #ff6347;
+    padding: 12px 25px;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e5533d;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: #ddd;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+footer nav ul li a {
+    color: #ddd;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+footer nav ul li a:hover {
+    color: #ff6347;
+}
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+.hidden {
+    display: none;
+}

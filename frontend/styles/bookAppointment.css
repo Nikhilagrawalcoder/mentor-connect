@@ -1,0 +1,105 @@
+/* Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    /* background-color: #f8f9fa; */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* Header Styling (from login.css) */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+    background-color: #007bff;
+    color: white;
+    /* font-size: 20px; */
+}
+
+.navBar ul {
+    display: flex;
+    gap: 20px;
+     align-items: center;
+}
+
+.navBar ul li a,
+.logoutButton {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navBar ul li a:hover,
+.logoutButton:hover {
+    background-color: #0056b3;
+    color: white;
+    border-radius: 25px;
+}
+
+/* Heading Styling */
+h1, h3 {
+    text-align: center;
+    color: #3b82f6; /* Match original heading color */
+    margin-bottom: 20px;
+}
+
+/* Main Body */
+#mainBody {
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+/* Input and Select Styling */
+#inputdate, #slotSelect {
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #3b82f6; /* Match original input border */
+    color: #3b82f6; /* Match original color scheme */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#inputdate:focus, #slotSelect:focus {
+    border-color: #2563eb; /* Slightly darker blue for focus effect */
+}
+
+/* Book Appointment Button */
+#bookAppointment {
+    padding: 10px 50px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #3b82f6;
+    background-color: #3b82f6; /* Match original button background */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#bookAppointment:hover {
+    background-color: white;
+    color: #3b82f6; /* Reverse colors on hover */
+    border: 1px solid #3b82f6;
+}
+.hidden {
+    display: none;
+}

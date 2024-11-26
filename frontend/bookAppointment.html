@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment Page</title>
+    <link rel="stylesheet" href="./styles/bookAppointment.css">
+</head>
+<body>
+    <h1>Mentor Mentee Appointment Booking</h1>
+    <header>
+        <div class="logo">MentorConnect</div>
+        <nav class="navBar">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+               <li><a href="register.html" id="registerLink">Register</a></li>
+        <li><a href="login.html" id="loginLink">Login</a></li>
+                <li>
+                    <a href="mentors.html">Mentors</a>
+                </li>
+                <li>
+                    <a href="Booking.html">Bookings</a>
+                </li>
+                 <li><button class="logoutButton" >Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Book An Appointment with Your Mentor</h1>
+    <div id="mainBody">
+        <div>
+            <label for="mentorDateInput">Select the appointment date</label>
+            <input id="mentorDateInput" type="date" placeholder="Select the appointment date" />
+        </div>
+        <div>
+            <label for="mentorSlotSelect">Select your preferred time slot</label>
+            <select name="slot" id="mentorSlotSelect">
+                <option value="">--Please choose a time slot--</option>
+                <option value="8-9">8 AM to 9 AM</option>
+                <option value="9-10">9 AM to 10 AM</option>
+                <option value="10-11">10 AM to 11 AM</option>
+                <option value="11-12">11 AM to 12 PM</option>
+                <option value="12-13">12 PM to 1 PM</option>
+                <option value="13-14">1 PM to 2 PM</option>
+                <option value="14-15">2 PM to 3 PM</option>
+                <option value="15-16">3 PM to 4 PM</option>
+                <option value="16-17">4 PM to 5 PM</option>
+                <option value="17-18">5 PM to 6 PM</option>
+                <option value="18-19">6 PM to 7 PM</option>
+                <option value="19-20">7 PM to 8 PM</option>
+            </select>
+        </div>
+        <div>
+            <button id="bookAppointment">Book An Appointment</button>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./script/bookAppointment.js"></script>
