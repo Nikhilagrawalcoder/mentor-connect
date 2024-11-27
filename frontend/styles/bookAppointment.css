@@ -1,21 +1,21 @@
-/* Global Styling */
+
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
-    /* background-color: #f8f9fa; */
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
+    color: #e0e0e0; 
+    background-color: #121212; 
+    padding: 0px 0px;
 }
 
-/* Header Styling (from login.css) */
 header {
     width: 100%;
     display: flex;
@@ -23,83 +23,146 @@ header {
     align-items: center;
     padding: 0 50px;
     height: 80px;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #00b4d8);
     color: white;
-    /* font-size: 20px; */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .navBar ul {
     display: flex;
     gap: 20px;
-     align-items: center;
+    align-items: center;
 }
 
 .navBar ul li a,
 .logoutButton {
-    display: block;
     padding: 10px 20px;
     color: white;
     font-weight: 500;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .navBar ul li a:hover,
 .logoutButton:hover {
     background-color: #0056b3;
-    color: white;
-    border-radius: 25px;
+    transform: translateY(-3px);
 }
 
-/* Heading Styling */
+.logoutButton {
+    background-color: transparent;
+    border: 1px solid white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logoutButton:hover {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+
 h1, h3 {
     text-align: center;
-    color: #3b82f6; /* Match original heading color */
+    color: #3b82f6;
     margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Main Body */
 #mainBody {
     display: grid;
     margin: auto;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     text-align: center;
+    max-width: 800px;
+    margin-top: 50px;
 }
 
-/* Input and Select Styling */
+
 #inputdate, #slotSelect {
-    padding: 10px 20px;
-    font-size: 15px;
+    padding: 12px 25px;
+    font-size: 16px;
     border-radius: 10px;
-    border: 1px solid #3b82f6; /* Match original input border */
-    color: #3b82f6; /* Match original color scheme */
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+    background-color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #inputdate:focus, #slotSelect:focus {
-    border-color: #2563eb; /* Slightly darker blue for focus effect */
+    border-color: #2563eb;
+    background-color: #444; 
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+    outline: none;
 }
 
-/* Book Appointment Button */
 #bookAppointment {
-    padding: 10px 50px;
-    font-size: 15px;
-    border-radius: 10px;
+    padding: 12px 60px;
+    font-size: 16px;
+    border-radius: 50px;
     border: 1px solid #3b82f6;
-    background-color: #3b82f6; /* Match original button background */
+    background-color: #3b82f6;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 #bookAppointment:hover {
     background-color: white;
-    color: #3b82f6; /* Reverse colors on hover */
+    color: #3b82f6;
     border: 1px solid #3b82f6;
+    transform: translateY(-3px);
 }
+
+
 .hidden {
     display: none;
+}
+
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #444; 
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #333;
+    color: #e0e0e0; 
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.5);
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+footer {
+    background-color: #212121; 
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    margin-top: 50px;
+}
+
+footer a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

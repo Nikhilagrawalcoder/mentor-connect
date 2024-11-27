@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -6,15 +7,17 @@
     box-sizing: border-box;
 }
 
-/* General Styling */
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-/* Header Styling */
+
 header {
     width: 100%;
     display: flex;
@@ -22,9 +25,12 @@ header {
     align-items: center;
     padding: 0 50px;
     height: 80px;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     color: white;
-    /* font-size: 20px; */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .navBar ul {
@@ -33,106 +39,126 @@ header {
     align-items: center;
 }
 
+
 .navBar ul li a,
 .logoutButton {
-   display: block;
+    display: inline-block;
     padding: 10px 20px;
     color: white;
     font-weight: 500;
-    background-color: transparent;
-    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navBar ul li a:hover,
 .logoutButton:hover {
-    background-color: #0056b3;
+    background-color: rgba(255, 255, 255, 0.3);
     color: white;
-    border-radius: 25px;
 }
 
-/* Headings */
+
 h1 {
     text-align: center;
     color: #007bff;
     margin-bottom: 20px;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    margin-top: 120px; 
+    letter-spacing: 1px;
 }
 
-/* Role Selection Buttons */
+
 .selectRole {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 20px;
+    gap: 20px;
 }
 
 .selectRole button {
-    padding: 12px 25px;
+    padding: 12px 20px;
     border: 2px solid #007bff;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: #007bff;
     color: white;
-    font-size: 1rem;
-    margin: 0 10px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
 }
 
 .selectRole button:hover {
     background-color: white;
     color: #007bff;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 123, 255, 0.3);
 }
 
-/* Form Styling for Mentor and Mentee */
+
 .menteeDetail form, .mentorDetail form {
-    width: 40%;
+    width: 50%;
+    max-width: 600px;
     border: 2px solid #007bff;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
-    padding: 30px;
-    margin-top: 20px;
+    padding: 40px 30px;
+    margin-top: 30px;
     background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none; /* Hidden initially, will be shown based on selection */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: none; 
 }
 
 .menteeDetail form input, .mentorDetail form input, .mentorDetail form select {
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 12px 15px;
     font-size: 1rem;
     color: #333;
     border: 1px solid #ddd;
     border-radius: 5px;
+    transition: border-color 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .menteeDetail form input:focus, .mentorDetail form input:focus, .mentorDetail form select:focus {
     outline: none;
     border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Form Submit Button */
 .menteeDetail form input[type="submit"], .mentorDetail form input[type="submit"] {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
     border: none;
     padding: 12px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 5px;
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
 }
 
 .menteeDetail form input[type="submit"]:hover, .mentorDetail form input[type="submit"]:hover {
     background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 123, 255, 0.3);
 }
+
+
 .hidden {
     display: none;
 }
+
 #registerLink {
     display: block !important;
 }
+
+
+
+ 

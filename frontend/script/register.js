@@ -1,10 +1,8 @@
 let baseUrl = `http://localhost:5000`;
 
-// Selecting role buttons
 let mentorBtn = document.getElementById("mentor");
 let menteeBtn = document.getElementById("mentee");
 
-// Event listener for Mentor button
 mentorBtn.addEventListener("click", () => {
     let mentorForm = document.querySelector(".mentorDetail form");
     let menteeForm = document.querySelector(".menteeDetail form");
@@ -12,7 +10,6 @@ mentorBtn.addEventListener("click", () => {
     menteeForm.style.display = "none";
 });
 
-// Event listener for Mentee button
 menteeBtn.addEventListener("click", () => {
     let mentorForm = document.querySelector(".mentorDetail form");
     let menteeForm = document.querySelector(".menteeDetail form");
@@ -20,7 +17,6 @@ menteeBtn.addEventListener("click", () => {
     menteeForm.style.display = "flex";
 });
 
-// Mentee registration form submission
 let menteeRegisterForm = document.querySelector(".menteeDetail form");
 
 menteeRegisterForm.addEventListener("submit", (e) => {
@@ -39,7 +35,6 @@ menteeRegisterForm.addEventListener("submit", (e) => {
     registerNewUser(obj);
 });
 
-// Mentor registration form submission
 let mentorRegisterForm = document.querySelector(".mentorDetail form");
 
 mentorRegisterForm.addEventListener("submit", (e) => {
@@ -50,9 +45,8 @@ mentorRegisterForm.addEventListener("submit", (e) => {
     let currentLocation = document.getElementById("locationMentor").value;
     let password = document.getElementById("passwordMentor").value;
     let expertise = document.getElementById("expertise").value;
-    let meetLink = document.getElementById("meetLink").value; // Capturing the meet link
+    let meetLink = document.getElementById("meetLink").value; 
     
-    // Creating the object with the Google Meet link included
     let obj = {
         name,
         email,
@@ -60,14 +54,12 @@ mentorRegisterForm.addEventListener("submit", (e) => {
         role: "mentor",
         location: currentLocation,
         expertise,
-        meetLink // Adding the meetLink to the object
+        meetLink 
     };
     
     registerNewUser(obj);
 });
 
-
-// Function to register a new user
 async function registerNewUser(obj) {
     try {
         let res = await fetch(`${baseUrl}/user/register`, {
@@ -78,53 +70,99 @@ async function registerNewUser(obj) {
             body: JSON.stringify(obj)
         });
         let out = await res.json();
-        alert(out.msg);
+
+       
         if (out.msg === "Successfully registered") {
-            // Redirect to login page after successful registration
-            window.location.href = "./login.html";
+            Swal.fire({
+                title: 'Success!',
+                text: out.msg,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+               setTimeout(() => {
+                window.location.href = './login.html';
+            }, 1000); 
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: out.msg,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     } catch (error) {
         console.log("Error while registering from frontend");
-        alert("Error while registering");
+
+       
+        Swal.fire({
+            title: 'Error',
+            text: 'Error while registering',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     }
 }
 
-// Handling visibility of Login, Register, and Logout buttons
 let token = sessionStorage.getItem("token");
 const logoutBtn = document.querySelector(".logoutButton");
+
 logoutBtn.addEventListener('click', async function () {
-        if (!token) return;
+    if (!token) return;
 
-        try {
-            const response = await fetch(`${baseUrl}/user/logout`, {
-                method: 'GET',
-                headers: {
-                    'Content-type': 'application/json',
-                    Authorization: `${token}`,
-                },
+    try {
+        const response = await fetch(`${baseUrl}/user/logout`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `${token}`,
+            },
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('role');
+            sessionStorage.removeItem('name');
+
+            
+            Swal.fire({
+                title: 'Logged out',
+                text: data.msg,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                setTimeout(() => {
+                window.location.href = './login.html';
+            }, 1000); 
             });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Clear sessionStorage
-                sessionStorage.removeItem('token');
-                sessionStorage.removeItem('role');
-                sessionStorage.removeItem('name');
-
-                alert(data.msg); // Alert user about successful logout
-
-                // Redirect to the login page
+        } else {
+           
+            Swal.fire({
+                title: 'Error',
+                text: data.msg,
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then(() => {
+               setTimeout(() => {
                 window.location.href = './login.html';
-            } else {
-                // If there was an error during logout
-                alert(data.msg);
-                window.location.href = './login.html';
-            }
-        } catch (error) {
-            console.error('Error while logging out:', error);
-            alert('Error while logging out.');
-            window.location.href = './login.html';
+            }, 1000); 
+            });
         }
-    });
-
+    } catch (error) {
+        console.error('Error while logging out:', error);
+        
+        
+        Swal.fire({
+            title: 'Error',
+            text: 'Error while logging out.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        }).then(() => {
+           setTimeout(() => {
+                window.location.href = './login.html';
+            }, 1000); 
+        });
+    }
+});

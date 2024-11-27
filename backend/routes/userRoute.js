@@ -1,14 +1,23 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const fs = require("fs");
 require("dotenv").config();
+const nodemailer = require("nodemailer");
 const { Usermodel } = require("../models/userModel");
 const {BlacklistToken}=require("../models/blacklistModel");
 
 const userRoute = express.Router();
+const transporter = nodemailer.createTransport({
+            pool: true,
+             host: 'smtp.gmail.com',
+    port: 587, 
+    secure: false, 
+            auth: {
+                user: process.env.EMAIL_USER,      
+        pass: process.env.EMAIL_PASS 
+        }});
 
-// Get all mentors
+
 userRoute.get("/mentors", async (req, res) => {
     try {
         let allMentors = await Usermodel.find({ role: "mentor" });
@@ -19,12 +28,11 @@ userRoute.get("/mentors", async (req, res) => {
     }
 });
 
-// Get mentors according to location
 userRoute.get("/mentors/:location", async (req, res) => {
     let location = req.params.location;
     try {
         let allMentors = await Usermodel.find({ role: "mentor", location: { "$regex": location, "$options": "i" } });
-        console.log(allMentors);
+        // console.log(allMentors);
         res.json({ "msg": "All mentors details based on location", "data": allMentors });
     } catch (error) {
         console.log("Error from getting mentors based on location", error);
@@ -32,7 +40,7 @@ userRoute.get("/mentors/:location", async (req, res) => {
     }
 });
 
-// Get mentors based on their specialty
+
 userRoute.get("/mentors/expertise/:value", async (req, res) => {
     let expertise = req.params.value;
     try {
@@ -44,14 +52,14 @@ userRoute.get("/mentors/expertise/:value", async (req, res) => {
     }
 });
 
-// Route to add new user (mentor/mentee)
+
 userRoute.post("/register", async (req, res) => {
-    console.log(req.body);
+   
     const { name, email, password, role, expertise, location, meetLink } = req.body;
-    console.log(email);
+  
    try {
         let reqData = await Usermodel.find({ email });
-       console.log(reqData);
+    
         if (reqData.length > 0) {
             return res.json({ "msg": "You are already registered" });
         }
@@ -61,13 +69,13 @@ userRoute.post("/register", async (req, res) => {
                 console.log("Error from hashing password", err);
                 res.json({ "msg": "Error from hashing password" });
             } else {
-                // Initialize the meetLink only if the role is 'mentor'
+                
                 let userMeetLink = null;
                 if (role === "mentor") {
-                    userMeetLink = meetLink || "https://meet.google.com/your-default-meet-link"; // Default if no link is provided
+                    userMeetLink = meetLink || "https://meet.google.com/your-default-meet-link"; // Default 
                 }
 
-                // Create a new user object with the meetLink only if it's a mentor
+        
                 let registerData = new Usermodel({ 
                     name, 
                     email, 
@@ -75,10 +83,24 @@ userRoute.post("/register", async (req, res) => {
                     role, 
                     expertise: expertise || "None", 
                     location, 
-                    meetLink:   userMeetLink || null  // Only add meetLink for mentors
+                    meetLink:   userMeetLink || null  
                 });
 
                 await registerData.save();
+                 const mailOptions = {
+                    from: 'nikhilagrawal0605@gmail.com',
+                    to: email,
+                    subject: 'Registration Confirmation',
+                    text: `Hello ${name},\n\nThank you for registering. We're excited to have you on board!`
+                };
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log("Error sending email:", error);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                    }
+                });
                 res.json({ "msg": "Successfully registered" });
             }
         });
@@ -89,7 +111,7 @@ userRoute.post("/register", async (req, res) => {
 });
 
 
-// Route to login a user (mentor/mentee)
+
 userRoute.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -113,7 +135,7 @@ userRoute.post("/login", async (req, res) => {
     }
 });
 
-// Route to logout a user (mentor/mentee) 
+
 userRoute.get("/logout", async (req, res) => {
     const token = req.headers.authorization;
 
@@ -122,13 +144,13 @@ userRoute.get("/logout", async (req, res) => {
     }
 
     try {
-        // Check if the token is already blacklisted
+       
         const existingToken = await BlacklistToken.findOne({ token });
         if (existingToken) {
             return res.status(200).json({ "msg": "Token is already blacklisted. Logout Successful." });
         }
 
-        // Create a new blacklist entry
+     
         const newBlacklistToken = new BlacklistToken({ token });
         await newBlacklistToken.save();
 

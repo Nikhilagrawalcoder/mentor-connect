@@ -9,13 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (month < 10) month = '0' + month.toString();
     if (day < 10) day = '0' + day.toString();
 
-    // Ensure the date is one day ahead
+   
     let minDate = year + '-' + month + '-' + (day + 1);
     document.getElementById('mentorDateInput').setAttribute('min', minDate);
 });
-
-// Handle the logout functionality on button click
-
 
 let btnBook = document.getElementById("bookAppointment");
 btnBook.addEventListener("click", () => {
@@ -25,10 +22,24 @@ btnBook.addEventListener("click", () => {
     let mentorId = sessionStorage.getItem("mentorId");
 
     if (!token) {
-        alert("Please Login First to Book an Appointment!!");
-        window.location.href = "./Login.html";
+       Swal.fire({
+            title: 'warning',
+            text: 'You must be login first',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        }).then(() => {
+           
+            setTimeout(() => {
+                window.location.href = './login.html';
+            }, 1000); 
+        });
     } else if (date == "" || slot == "") {
-        alert("Please fill all the fields");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Incomplete Information',
+            text: 'Please fill all the fields.',
+            confirmButtonText: 'OK'
+        });
     } else {
         let obj = {
             mentorId: mentorId,
@@ -45,23 +56,44 @@ async function bookAnAppointment(obj, token) {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `${token}` // Send the token for authentication
+                Authorization: `${token}` 
             },
             body: JSON.stringify(obj)
         });
         let out = await res.json();
         if (out.msg == "This Slot is Not Available.") {
-            alert("This Slot is Not Available.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Slot Unavailable',
+                text: 'This Slot is Not Available.',
+                confirmButtonText: 'OK'
+            });
         } else if (out.msg == "New booking created successfully. Confirmation sent to email.") {
-            alert(`Hi, Your booking is confirmed on ${obj.bookingDate} and an email has been sent to your registered email.`);
+            Swal.fire({
+                icon: 'success',
+                title: 'Booking Confirmed',
+                text: `Hi, Your booking is confirmed on ${obj.bookingDate} and an email has been sent to your registered email.`,
+                confirmButtonText: 'OK'
+            });
         } else {
-            alert(out.msg);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: out.msg,
+                confirmButtonText: 'OK'
+            });
         }
     } catch (error) {
         console.log("Error:", error.message);
-        alert("Something went wrong while booking the appointment!");
+        Swal.fire({
+            icon: 'error',
+            title: 'Something Went Wrong',
+            text: 'Something went wrong while booking the appointment!',
+            confirmButtonText: 'OK'
+        });
     }
 }
+
 const logoutBtn = document.querySelector(".logoutButton");
 let token = sessionStorage.getItem("token");
 logoutBtn.addEventListener('click', async function () {
@@ -79,23 +111,39 @@ logoutBtn.addEventListener('click', async function () {
             const data = await response.json();
 
             if (response.ok) {
-                // Clear sessionStorage
+                
                 sessionStorage.removeItem('token');
                 sessionStorage.removeItem('role');
                 sessionStorage.removeItem('name');
 
-                alert(data.msg); // Alert user about successful logout
-
-                // Redirect to the login page
-                window.location.href = './login.html';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Logout Successful',
+                    text: data.msg,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = './login.html';
+                });
             } else {
-                // If there was an error during logout
-                alert(data.msg);
-                window.location.href = './login.html';
+              
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Logout Failed',
+                    text: data.msg,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = './login.html';
+                });
             }
         } catch (error) {
             console.error('Error while logging out:', error);
-            alert('Error while logging out.');
-            window.location.href = './login.html';
+            Swal.fire({
+                icon: 'error',
+                title: 'Error While Logging Out',
+                text: 'Error while logging out.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = './login.html';
+            });
         }
     });
