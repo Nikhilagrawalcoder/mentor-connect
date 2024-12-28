@@ -146,17 +146,17 @@ tr:nth-child(even) {
 
 
 .timer.expired {
-    color: #e53935; /* Red for expired */
+    color: #e53935; 
     font-weight: bold;
 }
 
 .timer.current {
-    color: #43a047; /* Green for current */
+    color: #43a047; 
     font-weight: bold;
 }
 
 .timer.upcoming {
-    color: #ff9800; /* Orange for upcoming */
+    color: #ff9800; 
     font-weight: bold;
 }
 
