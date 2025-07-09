@@ -32,11 +32,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-server.listen(5000,async()=>{
+server.listen(8000,async()=>{
     try { 
         
         console.log("Connected to DB");
-        console.log(`Server is runnning at port ${5000}`)
+        console.log(`Server is runnning at port ${8000}`)
     } catch (error) {
         console.log("Not able to connect to DB");
         console.log(error);
