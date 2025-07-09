@@ -1,0 +1,32 @@
+services:
+  # Backend API Service
+  - type: web
+    name: mentor-connect-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: Key
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: FRONTEND_URL
+        value: https://mentor-connect-frontend.onrender.com
+
+  # Frontend Static Site
+  - type: web
+    name: mentor-connect-frontend
+    env: static
+    plan: free
+    buildCommand: echo "No build required for static site"
+    staticPublishPath: ./frontend
+    envVars:
+      - key: API_BASE_URL
+        value: https://mentor-connect-backend.onrender.com
